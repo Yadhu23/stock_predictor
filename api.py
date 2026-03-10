@@ -76,8 +76,10 @@ class APIHandler(BaseHTTPRequestHandler):
         else:
             self.send_error(404, "Not Found")
 
-def run(server_class=HTTPServer, handler_class=APIHandler, port=8000):
-    server_address = ('127.0.0.1', port)
+def run(server_class=HTTPServer, handler_class=APIHandler):
+    import os
+    port = int(os.environ.get('PORT', 8000))
+    server_address = ('0.0.0.0', port)
     httpd = server_class(server_address, handler_class)
     print(f"Starting server on port {port}...")
     httpd.serve_forever()

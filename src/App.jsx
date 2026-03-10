@@ -32,7 +32,9 @@ function App() {
     setLoading(true);
 
     try {
-      const response = await fetch(`http://127.0.0.1:8000/predict?stock=${targetSymbol}`);
+      // Use environment variable for backend URL in production, fallback to local dev server
+      const baseUrl = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000';
+      const response = await fetch(`${baseUrl}/predict?stock=${targetSymbol}`);
 
       if (!response.ok) {
         throw new Error("Unable to fetch prediction. The backend might be down.");
