@@ -6,3 +6,6 @@ services:
     buildCommand: pip install -r requirements.txt --no-cache-dir
     startCommand: python api.py
     autoDeploy: true
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.7
